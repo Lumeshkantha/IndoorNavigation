@@ -56,7 +56,7 @@ public class CreateGrocerylist extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        adapter=new ArrayAdapter<String>(this,R.layout.item_list,R.id.itemname,itemlist);
+        adapter = new ArrayAdapter<String>(this, R.layout.item_list, R.id.itemname, itemlist);
         listView.setAdapter(adapter);
     }
 }
