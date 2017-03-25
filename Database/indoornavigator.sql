@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2017 at 11:47 AM
+-- Generation Time: Mar 25, 2017 at 05:33 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,6 +19,116 @@ SET time_zone = "+00:00";
 --
 -- Database: `indoornavigator`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `1`
+--
+
+CREATE TABLE `1` (
+  `id` int(11) NOT NULL,
+  `rid` int(11) NOT NULL,
+  `distance` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `1`
+--
+
+INSERT INTO `1` (`id`, `rid`, `distance`) VALUES
+(1, 2, 1),
+(2, 3, 2),
+(3, 4, 3),
+(4, 5, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `2`
+--
+
+CREATE TABLE `2` (
+  `id` int(11) NOT NULL,
+  `rid` int(11) NOT NULL,
+  `distance` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `2`
+--
+
+INSERT INTO `2` (`id`, `rid`, `distance`) VALUES
+(1, 1, 1),
+(2, 3, 1),
+(3, 4, 2),
+(4, 5, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `3`
+--
+
+CREATE TABLE `3` (
+  `id` int(11) NOT NULL,
+  `rid` int(11) DEFAULT NULL,
+  `distance` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `3`
+--
+
+INSERT INTO `3` (`id`, `rid`, `distance`) VALUES
+(1, 1, 2),
+(2, 2, 1),
+(3, 4, 1),
+(4, 5, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `4`
+--
+
+CREATE TABLE `4` (
+  `id` int(11) NOT NULL,
+  `rid` int(11) DEFAULT NULL,
+  `distance` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `4`
+--
+
+INSERT INTO `4` (`id`, `rid`, `distance`) VALUES
+(1, 1, 3),
+(2, 2, 2),
+(3, 3, 1),
+(4, 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `5`
+--
+
+CREATE TABLE `5` (
+  `id` int(11) NOT NULL,
+  `rid` int(11) DEFAULT NULL,
+  `distance` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `5`
+--
+
+INSERT INTO `5` (`id`, `rid`, `distance`) VALUES
+(1, 1, 4),
+(2, 2, 3),
+(3, 3, 2),
+(4, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -63,13 +173,41 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`) VALUES
 (1, 'a', 'a', 'a', 'a'),
-(9, 'c', 'c', 'a', 'c'),
-(8, '', '', '', ''),
-(7, 'aa', 'aa', 'aa', 'aa');
+(9, 'c', 'c', 'a', 'c');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `1`
+--
+ALTER TABLE `1`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `2`
+--
+ALTER TABLE `2`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `3`
+--
+ALTER TABLE `3`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `4`
+--
+ALTER TABLE `4`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `5`
+--
+ALTER TABLE `5`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `item`
@@ -88,6 +226,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `1`
+--
+ALTER TABLE `1`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `2`
+--
+ALTER TABLE `2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `3`
+--
+ALTER TABLE `3`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `4`
+--
+ALTER TABLE `4`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `5`
+--
+ALTER TABLE `5`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `item`
 --

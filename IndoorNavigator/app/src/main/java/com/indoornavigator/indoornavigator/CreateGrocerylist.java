@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -58,6 +60,22 @@ public class CreateGrocerylist extends AppCompatActivity {
         }
         adapter = new ArrayAdapter<String>(this, R.layout.item_list, R.id.itemname, itemlist);
         listView.setAdapter(adapter);
+
+
+
+        final Button next = (Button) findViewById(R.id.Next);
+        next.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                CheckBox cb;
+                for (int x = 0; x<listView.getChildCount();x++){
+                    cb = (CheckBox)listView.getChildAt(x).findViewById(R.id.itemname);
+                    if(cb.isChecked()){
+                        Log.e("Data",String.valueOf(x));
+                        Log.e("Data",cb.getText().toString());
+                    }
+                }
+            }
+        });
     }
 }
 
