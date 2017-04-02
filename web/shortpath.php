@@ -6,8 +6,8 @@ if ($conn->connect_error)
 {
     die("Connection failed");
 }
-$flocation=3;
-$selectedracks=array(1,2,4,5);
+$flocation=4;
+$selectedracks=array(1,2,5);
 $orderedracks=array();
 foreach($selectedracks as $rack)
 {
@@ -67,18 +67,7 @@ foreach($selectedracks as $rack)
 		break;
 	}
 }
-/*
-$sql = 'SELECT * FROM `1` WHERE distance = (select min(distance) from `1`)';
-$result = $conn->query($sql);
-if ($result->num_rows > 0)
-{
-	$item=array();
-	while($row = $result->fetch_assoc())
-	{
-        $item[]=array('name'=>$row["name"]);
-	}
-	echo json_encode($item);
-}*/
+
 echo json_encode($orderedracks);
 $conn->close();
 ?>
