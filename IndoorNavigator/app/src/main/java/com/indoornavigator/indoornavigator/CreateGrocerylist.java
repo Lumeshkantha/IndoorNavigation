@@ -41,6 +41,7 @@ public class CreateGrocerylist extends AppCompatActivity {
 
     ArrayAdapter<String> adapter;
     ListView listView;
+    Items itemlist = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,6 @@ public class CreateGrocerylist extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listview);
         DBAccessCreateGrocerylist dba = new DBAccessCreateGrocerylist();
         dba.getCreateGrocerylistobject(cgl);
-        ArrayList itemlist = null;
         try {
             itemlist = dba.execute().get();
         } catch (InterruptedException e) {
@@ -58,7 +58,7 @@ public class CreateGrocerylist extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        adapter = new ArrayAdapter<String>(this, R.layout.item_list, R.id.itemname, itemlist);
+        adapter = new ArrayAdapter<String>(this, R.layout.item_list, R.id.itemname, itemlist.name);
         listView.setAdapter(adapter);
 
 
@@ -67,19 +67,50 @@ public class CreateGrocerylist extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 CheckBox cb;
+                ArrayList<Integer> id = new ArrayList<Integer>();
                 for (int x = 0; x<listView.getChildCount();x++){
                     cb = (CheckBox)listView.getChildAt(x).findViewById(R.id.itemname);
                     if(cb.isChecked()){
-                        Log.e("Data",String.valueOf(x));
-                        Log.e("Data",cb.getText().toString());
+                        //Log.e("Data",String.valueOf(x));
+                        //Log.e("Data",cb.getText().toString());
+                        id.add(itemlist.iid.get(x));
                     }
                 }
+                getRackID(id);
             }
         });
     }
+
+    void getRackID(ArrayList<Integer> id)
+    {
+        ArrayList<Integer> racks = new ArrayList<Integer>();
+        for (int i:id)
+        {
+            boolean status=true;
+            if(racks.size()==0)
+            {
+                racks.add(i);
+            }
+            else
+            {
+                for (int j:racks)
+                {
+                    if(i==j)
+                    {
+                        status=false;
+                        break;
+                    }
+                }
+                if(status)
+                {
+                    racks.add(i);
+                }
+            }
+        }
+    }
 }
 
-class DBAccessCreateGrocerylist extends AsyncTask<Void,Void,ArrayList> {
+class DBAccessCreateGrocerylist extends AsyncTask<Void,Void,Items> {
 
     CreateGrocerylist cgl;
     void getCreateGrocerylistobject(CreateGrocerylist cgl)
@@ -87,9 +118,10 @@ class DBAccessCreateGrocerylist extends AsyncTask<Void,Void,ArrayList> {
         this.cgl=cgl;
     }
     @Override
-    protected ArrayList doInBackground(Void... params) {
+    protected Items doInBackground(Void... params) {
 
         InputStream is = null;
+        Items items = new Items();
         try
         {
             HttpClient httpclient = new DefaultHttpClient();
@@ -107,13 +139,13 @@ class DBAccessCreateGrocerylist extends AsyncTask<Void,Void,ArrayList> {
             is.close();
             String result = sb.toString();
             final JSONArray jsonArray = new JSONArray(result);
-            ArrayList<String> itemlist = new ArrayList<>();
             for(int i=0;i<jsonArray.length();i++)
             {
                 JSONObject jsonObject= jsonArray.getJSONObject(i);
-                itemlist.add(jsonObject.getString("name"));
+                items.name.add(jsonObject.getString("name"));
+                items.iid.add(jsonObject.getInt("iid"));
             }
-            return itemlist;
+            return items;
         }catch (Exception ex)
         {
             Log.e("Error",ex.getMessage());
@@ -125,5 +157,17 @@ class DBAccessCreateGrocerylist extends AsyncTask<Void,Void,ArrayList> {
             });
             return null;
         }
+    }
+}
+
+class Items
+{
+    ArrayList<String> name;
+    ArrayList<Integer> iid;
+
+    public Items()
+    {
+        name = new ArrayList<String>();
+        iid = new ArrayList<Integer>();
     }
 }

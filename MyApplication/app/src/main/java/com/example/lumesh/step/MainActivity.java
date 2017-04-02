@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void step(long timeNs) {
         numSteps++;
-        textView.setText(TEXT_NUM_STEPS + numSteps);
+        textView.setText(TEXT_NUM_STEPS + getDistanceRun(numSteps)+" m");
+    }
+    public float getDistanceRun(int steps){
+        float distance = (float)(steps*78)/(float)100;
+        return distance;
     }
 }
