@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2017 at 05:33 PM
+-- Generation Time: Apr 03, 2017 at 01:52 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -148,10 +148,30 @@ CREATE TABLE `item` (
 INSERT INTO `item` (`id`, `name`) VALUES
 (1, 'Vegetable'),
 (2, 'Sea Food'),
-(3, 'Vegetable'),
-(4, 'Sea Food'),
 (5, 'Books'),
 (6, 'Stationery items');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subitems`
+--
+
+CREATE TABLE `subitems` (
+  `sid` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `iid` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subitems`
+--
+
+INSERT INTO `subitems` (`sid`, `name`, `iid`) VALUES
+(1, 'Tomato', 1),
+(2, 'Potato', 1),
+(3, 'Ladyfingers', 1),
+(4, 'Onion', 1);
 
 -- --------------------------------------------------------
 
@@ -216,6 +236,12 @@ ALTER TABLE `item`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subitems`
+--
+ALTER TABLE `subitems`
+  ADD PRIMARY KEY (`sid`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -256,6 +282,11 @@ ALTER TABLE `5`
 --
 ALTER TABLE `item`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `subitems`
+--
+ALTER TABLE `subitems`
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user`
 --
