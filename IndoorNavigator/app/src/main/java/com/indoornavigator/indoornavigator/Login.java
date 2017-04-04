@@ -32,7 +32,7 @@ import java.util.concurrent.ExecutionException;
 
 public class Login extends AppCompatActivity {
 
-    static public String serverip="172.31.4.105";
+    static public String serverip="192.168.1.2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

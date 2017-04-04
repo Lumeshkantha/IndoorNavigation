@@ -77,6 +77,7 @@ public class CreateGrocerylist extends AppCompatActivity {
                     }
                 }
                 getRackID(id);
+                startActivity(new Intent(getBaseContext(),Test.class));
             }
         });
     }
